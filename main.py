@@ -18,3 +18,7 @@ password_input.send_keys("secret_sauce")
 login_button = chrome.find_element(By.CSS_SELECTOR, "[data-test='login-button']")
 login_button.click()
 
+inv_items = wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "[data-test='inventory-item']")))
+print(f"Şu kadar ürün bulundu: {len(inv_items)}")
+
+
