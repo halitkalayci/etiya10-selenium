@@ -9,7 +9,7 @@ wait = WebDriverWait(chrome, 10)
 chrome.get("https://saucedemo.com")
 chrome.maximize_window()
 
-username_input = wait.until( EC.visibility_of_element_located(By.ID, "user-name") ) # ✅ Max 10s elementi bekler ve öyle ilerler 
+username_input = wait.until( EC.visibility_of_element_located((By.ID, "user-name")) ) # ✅ Max 10s elementi bekler ve öyle ilerler 
 username_input.send_keys("standard_user") # bir inputa yazı yazmak için.
 
 password_input = chrome.find_element(By.ID, "password") # ❌ Yanlış (Elementi beklemez direkt geldi varsayar)
