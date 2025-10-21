@@ -13,6 +13,8 @@ wait.until( EC.visibility_of_element_located((By.ID, "user-name")) ).send_keys("
 
 wait.until( EC.visibility_of_element_located((By.ID, "password"))).send_keys("secret_sauce123")
 
-wait.until( EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='login-button']"))).click()
+login_button = wait.until( EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='login-button']")))
+login_button.click()
 
+login_button.screenshot("btn.png")
 driver.save_screenshot("ss.png")
