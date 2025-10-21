@@ -7,19 +7,22 @@ import os
 import pytest 
 
 class TestLogin():
-    @pytest.fixture
+    @pytest.fixture # tüm testlerin öncesi ve sonrası çalışacak fonksiyon olmasını sağlıyor (sarmalladığı fonk. için)
     def driver(self):
         driver = Chrome()
         driver.maximize_window()
         driver.get("https://saucedemo.com")
-        return driver
+        yield driver # return dediğinizde fonk. biter, yielddan sonra kod yazabilirsiniz.
+        driver.quit()
+        #test sonrası..
+    
+    @pytest.fixture
+    def wait(self,driver):
+        yield WebDriverWait(driver, 10)
 
-    def test_login_valid(self):
-        driver = Chrome()
-        wait = WebDriverWait(driver, 10)
-        driver.maximize_window()
-        driver.get("https://saucedemo.com")
 
+    #@pytest.mark.skip
+    def test_login_valid(self, driver, wait):
         wait.until( EC.visibility_of_element_located((By.ID, "user-name")) ).send_keys("standard_user") 
 
         wait.until( EC.visibility_of_element_located((By.ID, "password"))).send_keys("secret_sauce")
@@ -29,12 +32,7 @@ class TestLogin():
 
         assert True
 
-    def test_login_invalid(self):
-        driver = Chrome()
-        wait = WebDriverWait(driver, 10)
-        driver.maximize_window()
-        driver.get("https://saucedemo.com")
-
+    def test_login_invalid(self, driver, wait):
         #Magic String
         wait.until( EC.visibility_of_element_located((By.ID, "user-name")) ).send_keys("standard_user123") 
 
