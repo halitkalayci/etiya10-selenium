@@ -4,9 +4,32 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 import os
+import pytest 
 
 class TestLogin():
+    @pytest.fixture
+    def driver(self):
+        driver = Chrome()
+        driver.maximize_window()
+        driver.get("https://saucedemo.com")
+        return driver
+
     def test_login_valid(self):
+        driver = Chrome()
+        wait = WebDriverWait(driver, 10)
+        driver.maximize_window()
+        driver.get("https://saucedemo.com")
+
+        wait.until( EC.visibility_of_element_located((By.ID, "user-name")) ).send_keys("standard_user") 
+
+        wait.until( EC.visibility_of_element_located((By.ID, "password"))).send_keys("secret_sauce")
+
+        login_button = wait.until( EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='login-button']")))
+        login_button.click()
+
+        assert True
+
+    def test_login_invalid(self):
         driver = Chrome()
         wait = WebDriverWait(driver, 10)
         driver.maximize_window()
