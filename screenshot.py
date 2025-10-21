@@ -5,13 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 import os
 
-
-
 driver = Chrome()
 wait = WebDriverWait(driver, 10)
 driver.maximize_window()
 driver.get("https://saucedemo.com")
-
 
 wait.until( EC.visibility_of_element_located((By.ID, "user-name")) ).send_keys("standard_user123") 
 
