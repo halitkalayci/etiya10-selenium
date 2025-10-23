@@ -12,9 +12,12 @@ class LoginPage():
     def __init__(self):
         self.driver = Chrome()
         self.wait = WebDriverWait(self.driver, 10)
+    
+    def load(self):
+        self.driver.get("https://saucedemo.com")
 
     def type_into(self, element, text):
-       self.wait.until(EC.visibility_of_element_located(element)).send_keys(text)
+        self.wait.until(EC.visibility_of_element_located(element)).send_keys(text)
 
     def click_into(self, element):
         self.wait.until(EC.visibility_of_element_located(element)).click()
