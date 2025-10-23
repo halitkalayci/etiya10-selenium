@@ -1,6 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Chrome
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class LoginPage():
@@ -9,9 +7,9 @@ class LoginPage():
     LOGIN_BUTTON = (By.ID, "login-button")
     ERROR_CONTAINER = (By.CSS_SELECTOR, "[data-test='error']")
 
-    def __init__(self):
-        self.driver = Chrome()
-        self.wait = WebDriverWait(self.driver, 10)
+    def __init__(self, driver, wait):
+        self.driver = driver
+        self.wait = wait
     
     def load(self):
         self.driver.get("https://saucedemo.com")
