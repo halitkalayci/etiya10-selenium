@@ -17,3 +17,5 @@ def wait(driver):
     yield wait
 
 # hata veren bütün testlerin ekran görüntüsü alınsın.
+
+# Şu ana kadar yaptıklarımızı POM mimarisi ile tekrar refactor edelim.
