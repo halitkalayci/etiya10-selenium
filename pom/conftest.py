@@ -15,7 +15,3 @@ def driver():
 def wait(driver):
     wait = WebDriverWait(driver, 10)
     yield wait
-
-# hata veren bütün testlerin ekran görüntüsü alınsın.
-
-# Şu ana kadar yaptıklarımızı POM mimarisi ile tekrar refactor edelim.
